@@ -174,33 +174,31 @@ function makeAproductChart(){
     var productNamesArray = [];
     var  productLikesArray =[];
   
-    for(var i = 0; i < allGoats.length; i++){
+    for(var i = 0; i <  SurveyForBusMall.length; i++){
       var singlepictureName = SurveyForBusMall[i].name;
      productNamesArray.push(singlepictureName);
     }
   
-    for(var i = 0; i < allGoats.length; i++){
+    for(var i = 0; i <  SurveyForBusMall.length; i++){
       var singlePictureLikes = SurveyForBusMall.clicks;
      productLikesArray.push(singlePictureLikes);
     }
   
 //     var ctx = document.getElementById('productChart').getContext('2d');
 //     var productChart = new Chart(ctx, {
-//     // The type of chart we want to create
+// 
 //       type: 'bar',
-  
-//       // The data for our dataset
 //       data: {
-//         labels: [productNamesArray],
+//         labels: [productNamesArray], must add function
 //         datasets: [{
 //           label: 'product Likes',
 //           backgroundColor: 'rgb(255, 99, 132)',
 //           borderColor: 'rgb(255, 99, 132)',
-//           data: [1 ,2 ,3],
+//           data: [1 ,2 ,3],must add function
 //                 }]
 //       },
   
-//       // Configuration options go here
+//       // Configuration options go here  ( not matter )
 //       options: {
 //         scales: {
 //           yAxes: [{
