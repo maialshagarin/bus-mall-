@@ -13,16 +13,17 @@ SurveyForBusMall.all = [];
 SurveyForBusMall.container = document.getElementById('SurveyForBusMall-container');
 
 SurveyForBusMall.leftImage = document.getElementById('left-busMall-image');
-SurveyForBusMall.centerImage = document.getElementById('center-busMall-name');
+SurveyForBusMall.centerImage = document.getElementById('center-busMall-image');
 SurveyForBusMall.rightImage = document.getElementById('right-busMall-image');
 
 SurveyForBusMall.leftName = document.getElementById('left-busMall-name');
 SurveyForBusMall.centerName = document.getElementById('center-busMall-name');
 SurveyForBusMall.rightName = document.getElementById('right-busMall-name');
 
-SurveyForBusMall.leftObject = null;
-SurveyForBusMall.rightObject = null;
-SurveyForBusMall.centerobject = null;
+SurveyForBusMall.leftObject = null ;
+SurveyForBusMall.centerobject = null ;
+SurveyForBusMall.rightObject = null ;
+
 
 new SurveyForBusMall('bathroom', 'img/bathroom.jpg');
 new SurveyForBusMall('boots', 'img/boots.jpg');
@@ -34,9 +35,9 @@ new SurveyForBusMall('dog-duck', 'img/dog-duck.jpg');
 new SurveyForBusMall('dragon', 'img/dragon.jpg');
 new SurveyForBusMall('pen', 'img/pen.jpg');
 new SurveyForBusMall('pet-sweep', 'img/pet-sweep.jpg');
-new SurveyForBusMall('scissors', 'img/scissors');
+new SurveyForBusMall('scissors', 'img/scissors.jpg');
 new SurveyForBusMall('shark', 'img/shark.jpg');
-new SurveyForBusMall('sweep', 'img/sweep.jpg');
+new SurveyForBusMall('sweep', 'img/sweep.png');
 new SurveyForBusMall('tauntaun', 'img/tauntaun.jpg');
 new SurveyForBusMall('unicorn', 'img/unicorn.jpg');
 new SurveyForBusMall('usb', 'img/usb.gif');
@@ -50,7 +51,7 @@ new SurveyForBusMall('banana', 'img/banana.jpg');
 function renderNewPhoto() {
 
     // ensure that previous  not shown on next round
-    var forbidden = [SurveyForBusMall.leftObject, SurveyForBusMall.rightObject, SurveyForBusMall.centerobject];
+    var forbidden = [SurveyForBusMall.leftObject, SurveyForBusMall.centerobject  , SurveyForBusMall.rightobject  ];
 
     do {
 
@@ -72,24 +73,28 @@ function renderNewPhoto() {
     } while (forbidden.includes(SurveyForBusMall.rightObject));
 
     SurveyForBusMall.leftObject.shownCtr++;
-    SurveyForBusMall.rightObject.shownCtr++;
     SurveyForBusMall.centerobject.shownCtr++;
-
+    SurveyForBusMall.rightObject.shownCtr++;
+    
     var leftPhotoImageElement = SurveyForBusMall.leftImage;
-    var rightPhotoImageElement = SurveyForBusMall.rightImage;
     var centerPhotoImageElement = SurveyForBusMall.centerImage;
+    var rightPhotoImageElement = SurveyForBusMall.rightImage;
+  
 
-    centerPhotoImageElement.setAttribute('src', SurveyForBusMall.centerobject.filePath)
-    centerPhotoImageElement.setAttribute('src', SurveyForBusMall.centerobject.name)
     leftPhotoImageElement.setAttribute('src', SurveyForBusMall.leftObject.filePath);
     leftPhotoImageElement.setAttribute('alt', SurveyForBusMall.leftObject.name);
+
+                           
+
+    centerPhotoImageElement.setAttribute('src', SurveyForBusMall.centerobject.filePath);
+    centerPhotoImageElement.setAttribute('alt', SurveyForBusMall.centerobject.name);
+
     rightPhotoImageElement.setAttribute('src', SurveyForBusMall.rightObject.filePath);
     rightPhotoImageElement.setAttribute('alt', SurveyForBusMall.rightObject.name);
-
+ 
     SurveyForBusMall.leftName.textContent = SurveyForBusMall.leftObject.name;
-    SurveyForBusMall.rightName.textContent = SurveyForBusMall.rightObject.name;
     SurveyForBusMall.centerName.textContent = SurveyForBusMall.centerObject.name;
-
+    SurveyForBusMall.rightName.textContent = SurveyForBusMall.rightObject.name;
 }
 
 function getRandomphoto() {
@@ -161,3 +166,49 @@ SurveyForBusMall.container.addEventListener('click', clickHandler);
 updateTotals();
 
 renderNewPhoto();
+
+
+
+function makeAproductChart(){
+
+    var productNamesArray = [];
+    var  productLikesArray =[];
+  
+    for(var i = 0; i < allGoats.length; i++){
+      var singlepictureName = SurveyForBusMall[i].name;
+     productNamesArray.push(singlepictureName);
+    }
+  
+    for(var i = 0; i < allGoats.length; i++){
+      var singlePictureLikes = SurveyForBusMall.clicks;
+     productLikesArray.push(singlePictureLikes);
+    }
+  
+//     var ctx = document.getElementById('productChart').getContext('2d');
+//     var productChart = new Chart(ctx, {
+//     // The type of chart we want to create
+//       type: 'bar',
+  
+//       // The data for our dataset
+//       data: {
+//         labels: [productNamesArray],
+//         datasets: [{
+//           label: 'product Likes',
+//           backgroundColor: 'rgb(255, 99, 132)',
+//           borderColor: 'rgb(255, 99, 132)',
+//           data: [1 ,2 ,3],
+//                 }]
+//       },
+  
+//       // Configuration options go here
+//       options: {
+//         scales: {
+//           yAxes: [{
+//             ticks: {
+//               beginAtZero: true
+//             }
+//           }]
+//         }
+//       }
+//     });
+  }
