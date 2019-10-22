@@ -50,7 +50,7 @@ new SurveyForBusMall('banana', 'img/banana.jpg');
 
 function renderNewPhoto() {
 
-    // ensure that previous  not shown on next round
+    
     var forbidden = [SurveyForBusMall.leftObject, SurveyForBusMall.centerObject  , SurveyForBusMall.rightObject  ];
 
     do {
@@ -59,7 +59,7 @@ function renderNewPhoto() {
 
     } while (forbidden.includes(SurveyForBusMall.leftObject))
 
-    //  don't double up
+
     forbidden.push(SurveyForBusMall.leftObject);
     do {
         SurveyForBusMall.centerObject = getRandomphoto();
@@ -96,7 +96,7 @@ function renderNewPhoto() {
     SurveyForBusMall.centername.textContent = SurveyForBusMall.centerObject.name;
     SurveyForBusMall.rightname.textContent = SurveyForBusMall.rightObject.name;
 }
-// //////// random 
+
 function getRandomphoto() {
     var index = Math.floor(Math.random() * SurveyForBusMall.all.length);
     return SurveyForBusMall.all[index];
@@ -104,14 +104,12 @@ function getRandomphoto() {
 
 function updateTotals() {
 
-    var tableBody = document.getElementById('report');
-
-    tableBody.innerHTML = '';
+    var update = document.getElementById('report');
 
     for (var i = 0; i < SurveyForBusMall.all.length; i++) {
+        addElement ('p', update, row )
         var photo = SurveyForBusMall.all[i];
-        var row = addElement('tr', tableBody);
-        addElement('td', row, photo.name +  ' had ' + photo.clickCtr +' votes '+ ' and was shown ' +  photo.shownCtr + ' times ');
+        var row = (photo.name +  ' had ' + photo.clickCtr +' votes '+ ' and was shown ' +  photo.shownCtr + ' times ');
 
     }
 }
@@ -147,11 +145,12 @@ function clickHandler(event) {
     if (productClicked) {
         productClicked.clickCtr++;
         SurveyForBusMall.roundCtr++;
-        updateTotals();
+      
 
         if (SurveyForBusMall.roundCtr === SurveyForBusMall.roundLimit) {
 
             alert('No more clicking for you!');
+            updateTotals();
             renderchart();
             SurveyForBusMall.container.removeEventListener('click', clickHandler);
 
@@ -175,8 +174,8 @@ function  renderchart() {
     var chart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck ',
-          'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
+        labels: productArray,
+         
         datasets: [
           {
             label: 'Votes data',
@@ -210,5 +209,4 @@ function  renderchart() {
 
 
 SurveyForBusMall.container.addEventListener('click', clickHandler);
-updateTotals();
 renderNewPhoto();
