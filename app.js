@@ -152,7 +152,7 @@ function clickHandler(event) {
         if (SurveyForBusMall.roundCtr === SurveyForBusMall.roundLimit) {
 
             alert('No more clicking for you!');
-
+            renderchart();
             SurveyForBusMall.container.removeEventListener('click', clickHandler);
 
         } else {
@@ -161,7 +161,54 @@ function clickHandler(event) {
         }
     }
 }
+function  renderchart() {
+    var productArray = [];
+    var clickArray = [];
+    var ShownArray = [];
+    for (let i = 0; i < SurveyForBusMall.all.length; i++) {
+      var ProductInstent = SurveyForBusMall.all[i];
+      productArray.push(ProductInstent.name );
+      clickArray.push(ProductInstent.clickCtr);
+      ShownArray.push(ProductInstent.shownCtr);
+    }
+    var ctx = document.getElementById('Chart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck ',
+          'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
+        datasets: [
+          {
+            label: 'Votes data',
+            backgroundColor: 'black',
+            borderColor: 'pink',
+            data: clickArray,
+          }
+          ,
+          {
+            label: 'Shown data',
+            backgroundColor: 'green',
+            borderColor: 'white',
+            data: ShownArray,
+          }
+        ],
+        options: {
+            scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true
+                  }
+                }]
+              }
+            }
+          
+        }
+      });
+   }
+  
+
+
+
 SurveyForBusMall.container.addEventListener('click', clickHandler);
 updateTotals();
-
 renderNewPhoto();
