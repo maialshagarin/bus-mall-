@@ -16,12 +16,12 @@ SurveyForBusMall.leftImage = document.getElementById('left-busMall-image');
 SurveyForBusMall.centerImage = document.getElementById('center-busMall-image');
 SurveyForBusMall.rightImage = document.getElementById('right-busMall-image');
 
-SurveyForBusMall.leftName = document.getElementById('left-busMall-name');
-SurveyForBusMall.centerName = document.getElementById('center-busMall-name');
-SurveyForBusMall.rightName = document.getElementById('right-busMall-name');
+SurveyForBusMall.leftname = document.getElementById('left-busMall-name');
+SurveyForBusMall.centername = document.getElementById('center-busMall-name');
+SurveyForBusMall.rightname = document.getElementById('right-busMall-name');
 
 SurveyForBusMall.leftObject = null ;
-SurveyForBusMall.centerobject = null ;
+SurveyForBusMall.centerObject = null ;
 SurveyForBusMall.rightObject = null ;
 
 
@@ -51,7 +51,7 @@ new SurveyForBusMall('banana', 'img/banana.jpg');
 function renderNewPhoto() {
 
     // ensure that previous  not shown on next round
-    var forbidden = [SurveyForBusMall.leftObject, SurveyForBusMall.centerobject  , SurveyForBusMall.rightobject  ];
+    var forbidden = [SurveyForBusMall.leftObject, SurveyForBusMall.centerObject  , SurveyForBusMall.rightObject  ];
 
     do {
 
@@ -62,9 +62,9 @@ function renderNewPhoto() {
     //  don't double up
     forbidden.push(SurveyForBusMall.leftObject);
     do {
-        SurveyForBusMall.centerobject = getRandomphoto();
+        SurveyForBusMall.centerObject = getRandomphoto();
 
-    } while (forbidden.includes(SurveyForBusMall.centerobject))
+    } while (forbidden.includes(SurveyForBusMall.centerObject))
      forbidden.push(SurveyForBusMall.centerObject);
 
     do {
@@ -73,7 +73,7 @@ function renderNewPhoto() {
     } while (forbidden.includes(SurveyForBusMall.rightObject));
 
     SurveyForBusMall.leftObject.shownCtr++;
-    SurveyForBusMall.centerobject.shownCtr++;
+    SurveyForBusMall.centerObject.shownCtr++;
     SurveyForBusMall.rightObject.shownCtr++;
     
     var leftPhotoImageElement = SurveyForBusMall.leftImage;
@@ -86,17 +86,17 @@ function renderNewPhoto() {
 
                            
 
-    centerPhotoImageElement.setAttribute('src', SurveyForBusMall.centerobject.filePath);
-    centerPhotoImageElement.setAttribute('alt', SurveyForBusMall.centerobject.name);
+    centerPhotoImageElement.setAttribute('src', SurveyForBusMall.centerObject.filePath);
+    centerPhotoImageElement.setAttribute('alt', SurveyForBusMall.centerObject.name);
 
     rightPhotoImageElement.setAttribute('src', SurveyForBusMall.rightObject.filePath);
     rightPhotoImageElement.setAttribute('alt', SurveyForBusMall.rightObject.name);
  
-    SurveyForBusMall.leftName.textContent = SurveyForBusMall.leftObject.name;
-    SurveyForBusMall.centerName.textContent = SurveyForBusMall.centerObject.name;
-    SurveyForBusMall.rightName.textContent = SurveyForBusMall.rightObject.name;
+    SurveyForBusMall.leftname.textContent = SurveyForBusMall.leftObject.name;
+    SurveyForBusMall.centername.textContent = SurveyForBusMall.centerObject.name;
+    SurveyForBusMall.rightname.textContent = SurveyForBusMall.rightObject.name;
 }
-
+// //////// random 
 function getRandomphoto() {
     var index = Math.floor(Math.random() * SurveyForBusMall.all.length);
     return SurveyForBusMall.all[index];
@@ -111,9 +111,8 @@ function updateTotals() {
     for (var i = 0; i < SurveyForBusMall.all.length; i++) {
         var photo = SurveyForBusMall.all[i];
         var row = addElement('tr', tableBody);
-        addElement('td', row, photo.name);
-        addElement('td', row, '' + photo.clickCtr);
-        addElement('td', row, '' + photo.shownCtr);
+        addElement('td', row, photo.name +  ' had ' + photo.clickCtr +' votes '+ ' and was shown ' +  photo.shownCtr + ' times ');
+
     }
 }
 
@@ -166,49 +165,3 @@ SurveyForBusMall.container.addEventListener('click', clickHandler);
 updateTotals();
 
 renderNewPhoto();
-
-
-
-function makeAproductChart(){
-
-    var productNamesArray = [];
-    var  productLikesArray =[];
-  
-    for(var i = 0; i < allGoats.length; i++){
-      var singlepictureName = SurveyForBusMall[i].name;
-     productNamesArray.push(singlepictureName);
-    }
-  
-    for(var i = 0; i < allGoats.length; i++){
-      var singlePictureLikes = SurveyForBusMall.clicks;
-     productLikesArray.push(singlePictureLikes);
-    }
-  
-//     var ctx = document.getElementById('productChart').getContext('2d');
-//     var productChart = new Chart(ctx, {
-//     // The type of chart we want to create
-//       type: 'bar',
-  
-//       // The data for our dataset
-//       data: {
-//         labels: [productNamesArray],
-//         datasets: [{
-//           label: 'product Likes',
-//           backgroundColor: 'rgb(255, 99, 132)',
-//           borderColor: 'rgb(255, 99, 132)',
-//           data: [1 ,2 ,3],
-//                 }]
-//       },
-  
-//       // Configuration options go here
-//       options: {
-//         scales: {
-//           yAxes: [{
-//             ticks: {
-//               beginAtZero: true
-//             }
-//           }]
-//         }
-//       }
-//     });
-  }
