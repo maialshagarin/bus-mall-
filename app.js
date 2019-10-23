@@ -160,6 +160,61 @@ function clickHandler(event) {
         }
     }
 }
+// function updateItems() {
+//     console.log("inside updateItems");
+//     var dataString = JSON.stringify(SurveyForBusMall.all);
+//     localStorage.setItem('orders', dataString);
+//   }
+  
+//   //get all drinks
+//   function getStorage() {
+//     console.log("inside getStorage");
+//     var data = localStorage.getItem('orders');
+//     var newData = JSON.parse(data);
+//     if (newData) {
+//       for ( var i = 0; i <newData.length; i++) {
+//         var rawNewObject = newData[i];
+//         new SurveyForBusMall(
+//           rawNewObject.name,
+//           rawNewObject.filePath,
+//           rawNewObject.clickCtr,
+//           rawNewObject.shownCtr,
+//         );
+//       }
+//       renderNewPhoto();
+      // updateTotals();
+    
+    // console.log('local Storage Data', ItemsData);
+  
+
+
+
+
+/* function updateItem() {
+    localStorage.setItem('data', JSON.stringify(SurveyForBusMall.all));
+  }
+  function getItem() {
+    var surveyData = JSON.parse(localStorage.getItem('orders'));
+    if (surveyData){
+      console.log('user has already saved their own prefs');
+      SurveyForBusMall.all = surveyData;
+      }    }
+
+       document.getElementById('clear-ls').addEventListener('click',function() {
+        
+        localStorage.clear();
+        alert('you need reload page after that (just reload!)');
+       });
+
+        function clearLocalStorage(){
+        localStorage.clear();
+        SurveyForBusMall.all = [];
+     }*/
+      
+// var clearLsButton = document.getElementById('clear-ls');
+// clearLsButton.addEventListener('click', clearLocalStorage());
+
+
 function  renderchart() {
     var productArray = [];
     var clickArray = [];
@@ -205,8 +260,23 @@ function  renderchart() {
       });
    }
   
-
-
+//    function setData() {
+//     var BusString = JSON.stringify(SurveyForBusMall.all)
+//     localStorage.setItem('data', JSON.stringify(SurveyForBusMall.all))
+//   }
+//    function getData() {
+//     var BusData = JSON.parse(localStorage.getItem('data'))
+//     if (BusData) {
+//       SurveyForBusMall.all = BusData;
+//     }
+  
+//     updateTotals();
+//   }
+  
+  
+//   Things.container.addEventListener('click', clickHandler);
 
 SurveyForBusMall.container.addEventListener('click', clickHandler);
 renderNewPhoto();
+// getData();
+// getStorage();
