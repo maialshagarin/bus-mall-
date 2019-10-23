@@ -7,9 +7,8 @@ function SurveyForBusMall(name, filePath) {
 }
 SurveyForBusMall.roundCtr = 0;
 SurveyForBusMall.roundLimit = 25;
-
-
 SurveyForBusMall.all = [];
+
 SurveyForBusMall.container = document.getElementById('SurveyForBusMall-container');
 
 SurveyForBusMall.leftImage = document.getElementById('left-busMall-image');
@@ -105,7 +104,7 @@ function getRandomphoto() {
 function updateTotals() {
 
     var update = document.getElementById('report');
-
+    update.innerHTML ="";
     for (var i = 0; i < SurveyForBusMall.all.length; i++) {
         addElement ('p', update, row )
         var photo = SurveyForBusMall.all[i];
@@ -153,6 +152,9 @@ function clickHandler(event) {
             updateTotals();
             renderchart();
             SurveyForBusMall.container.removeEventListener('click', clickHandler);
+// /// SET IN local 
+            var productstring = JSON.stringify(SurveyForBusMall.all);
+            localStorage.setItem('product',productstring);
 
         } else {
 
@@ -160,6 +162,8 @@ function clickHandler(event) {
         }
     }
 }
+
+
 // function updateItems() {
 //     console.log("inside updateItems");
 //     var dataString = JSON.stringify(SurveyForBusMall.all);
@@ -277,6 +281,21 @@ function  renderchart() {
 //   Things.container.addEventListener('click', clickHandler);
 
 SurveyForBusMall.container.addEventListener('click', clickHandler);
+function getSetProduct (){
+    var productstring =localStorage.getItem('product');
+    if (productstring){
+
+        var rawObjectArray = JSON.parse(productstring);
+ 
+        for ( var i =0 ;i < rawObjectArray.length ; i++ ){
+            var rawobject = rawObjectArray[i];
+            var currentInstance = SurveyForBusMall.all[i] 
+            currentInstance.clickCtr = rawobject.clickCtr;
+            currentInstance.shownCtr = rawobject.shownCtr;
+        }
+    }
+}
 renderNewPhoto();
+getSetProduct ();
 // getData();
 // getStorage();
